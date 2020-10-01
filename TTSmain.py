@@ -13,7 +13,23 @@ mp3_format='Audio16Khz32KBitRateMonoMp3'
 speech_config.set_speech_synthesis_output_format(SpeechSynthesisOutputFormat[mp3_format])
 audio_config = AudioOutputConfig(filename=r'Cache\ConvertCache.mp3')
 synthesizer = SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
-ssml_string = open("InputText.xml", "r").read()
+
+
+data1 = data2 = data3 = "" 
+data1 = open("Cache\Top.txt","r").read()
+data2 = open("InputText.txt","r").read()
+data3 = open("Cache\Bottom.txt","r").read()
+data1 += "\n"
+data1 += data2 
+data1 += "\n"
+data1 += data3 
+open ("Cache\InputText.xml", "w").write(data1)
+
+
+
+
+
+ssml_string = open("Cache\InputText.xml", "r").read()
 synthesizer.speak_ssml_async(ssml_string)
 filename1 = r'Cache\ConvertCache.mp3'
 filename2 = r'AudioOutput\Audio'+time_now+'.mp3'
